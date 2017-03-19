@@ -2,6 +2,7 @@ package com.maryna.patientdb.beans;
 
 import java.util.Objects;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleIntegerProperty;
@@ -21,6 +22,7 @@ public class PatientData {
     private StringProperty address;
     private StringProperty phone;
     private StringProperty diagnosis;
+    private ArrayList<MedicationData> medication;
     private ObjectProperty<LocalDateTime> addmissionDate;
 
     /**
@@ -196,6 +198,9 @@ public class PatientData {
     
     public ObjectProperty<LocalDateTime> addmissionDateProperty(){
         return addmissionDate;
+    }
+    public ArrayList<MedicationData> getMedication() {
+        return medication;
     }
 
     

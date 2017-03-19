@@ -24,7 +24,6 @@ public class MedicationData {
     private StringProperty form;
     private ObjectProperty<LocalDateTime> dateOfMedicat;
 
-
     /**
      * Default constructor
      */
@@ -43,7 +42,7 @@ public class MedicationData {
      * @param dateOfMedicat
      */
     public MedicationData(final int id, final int patientId, final String medicat,
-                          final String dosage, final String form, final LocalDateTime dateOfMedicat) {
+            final String dosage, final String form, final LocalDateTime dateOfMedicat) {
         super();
         this.id = new SimpleIntegerProperty(id);
         this.patientId = new SimpleIntegerProperty(patientId);
@@ -53,12 +52,11 @@ public class MedicationData {
         this.dateOfMedicat = new SimpleObjectProperty<>(dateOfMedicat);
     }
 
-
     @Override
     public String toString() {
-        return "MedicationData{" + "id=" + id.get() + ", patientId=" + patientId.get() +
-                ", medicat=" + medicat.get() + ", dosage=" + dosage.get() +
-                ", form=" + form.get() + ", dateOfMedicat=" + dateOfMedicat.get() + '}';
+        return "MedicationData{" + "id=" + id.get() + ", patientId=" + patientId.get()
+                + ", medicat=" + medicat.get() + ", dosage=" + dosage.get()
+                + ", form=" + form.get() + ", dateOfMedicat=" + dateOfMedicat.get() + '}';
     }
 
     @Override
@@ -105,152 +103,76 @@ public class MedicationData {
         }
         return true;
     }
-    
-    
 
-//    /*
-//     Getters and Setters
-//     */
-//    public int getId() {
-//        return id.get();
-//    }
-//
-//    public void setId(final int id) {
-//        this.id.set(id);
-//    }
-//
-//    public IntegerProperty IdProperty() {
-//        return id;
-//    }
-//
-//    public int getPatientId() {
-//        return patientId.get();
-//    }
-//
-//    public void setPatientId(final int patientId) {
-//        this.patientId.set(patientId);
-//    }
-//
-//    public IntegerProperty patientIdProperty() {
-//        return patientId;
-//    }
-//
-//    public LocalDateTime getDateOfMed() {
-//        return dateOfMed.get();
-//    }
-//
-//    public void setDateOfMed(final LocalDateTime dateOfMed) {
-//        this.dateOfMed.set(dateOfMed);
-//    }
-//
-//    public ObjectProperty<LocalDateTime> dateOfMedProperty() {
-//        return dateOfMed;
-//    }
-//
-//    public String getMed() {
-//        return med.get();
-//    }
-//
-//    public void setMed(final String med) {
-//        this.med.set(med);
-//    }
-//
-//    public StringProperty medProperty() {
-//        return med;
-//    }
-//
-//    public double getUnitCost() {
-//        return unitCost.get();
-//    }
-//
-//    public void setUnitCost(final double unitCost) {
-//        this.unitCost.set(unitCost);
-//    }
-//
-//    public DoubleProperty unitCostProperty() {
-//        return unitCost;
-//    }
-//
-//    public double getUnits() {
-//        return units.get();
-//    }
-//
-//    public void setUnits(final double units) {
-//        this.units.set(units);
-//    }
-//
-//    public DoubleProperty unitsProperty() {
-//        return units;
-//    }
-
-    public IntegerProperty getId() {
-        return id;
+    public int getId() {
+        return id.get();
     }
 
-    public void setId(IntegerProperty id) {
-        this.id = id;
+    public void setId(final int id) {
+        this.id.set(id);
     }
-    
+
     public IntegerProperty idProperty() {
         return id;
     }
 
-    public IntegerProperty getPatientId() {
-        return patientId;
+    public int getPatientId() {
+        return patientId.get();
     }
 
-    public void setPatientId(IntegerProperty patientId) {
-        this.patientId = patientId;
+    public void setPatientId(final int patientId) {
+        this.patientId.set(patientId);
     }
 
     public IntegerProperty patientIdProperty() {
-        return id;
+        return patientId;
     }
-        
-    public StringProperty getMedicat() {
+
+    public String getMedicat() {
+        return medicat.get();
+    }
+
+    public void setMedicat(final String medicat) {
+        this.medicat.set(medicat);
+    }
+
+    public StringProperty medicatProperty() {
         return medicat;
     }
 
-    public void setMedicat(StringProperty medicat) {
-        this.medicat = medicat;
+    public String getDosage() {
+        return dosage.get();
     }
 
-    public IntegerProperty medicatProperty() {
-        return id;
+    public void setDosage(final String dosage) {
+        this.dosage.set(dosage); 
     }
-    public StringProperty getDosage() {
+
+    public StringProperty dosageProperty() {
         return dosage;
     }
 
-    public void setDosage(StringProperty dosage) {
-        this.dosage = dosage;
-    }
-    
-    public IntegerProperty dosageProperty() {
-        return id;
+    public String getForm() {
+        return form.get();
     }
 
-    public StringProperty getForm() {
+    public void setForm(final String form) {
+        this.form.set(form);
+    }
+
+    public StringProperty formProperty() {
         return form;
     }
 
-    public void setForm(StringProperty form) {
-        this.form = form;
-    }
-    
-    public IntegerProperty formProperty() {
-        return id;
-    }
-    
-    public ObjectProperty<LocalDateTime> getDateOfMedicat() {
-        return dateOfMedicat;
+    public LocalDateTime getDateOfMedicat() {
+        return dateOfMedicat.get();
     }
 
-    public void setDateOfMedicat(ObjectProperty<LocalDateTime> dateOfMedicat) {
-        this.dateOfMedicat = dateOfMedicat;
+    public void setDateOfMedicat(final LocalDateTime dateOfMedicat) {
+        this.dateOfMedicat.set(dateOfMedicat);
     }
-    
-    public ObjectProperty<LocalDateTime> dateOfMedicatProperty() {
+
+    public ObjectProperty<LocalDateTime> dateOfMedProperty() {
         return dateOfMedicat;
     }
 
