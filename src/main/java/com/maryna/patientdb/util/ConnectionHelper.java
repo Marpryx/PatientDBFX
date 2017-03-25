@@ -49,7 +49,7 @@ public class ConnectionHelper {
      */
     public static Properties getProperties() {
         Properties props = new Properties();
-        InputStream in = ConnectionHelper.class.getClassLoader().getResourceAsStream("prod-db.properties");
+        InputStream in = ConnectionHelper.class.getClassLoader().getResourceAsStream("patient-db.properties");
 
         try {
             props.load(in);

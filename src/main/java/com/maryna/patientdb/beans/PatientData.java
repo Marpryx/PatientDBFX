@@ -29,7 +29,7 @@ public class PatientData {
      * Default constructor
      */
     public PatientData() {
-        this(-1, "", "", "", "", "", LocalDateTime.now());
+        this(-1, "", "", "", "", "", LocalDateTime.now(), new ArrayList<>());
     }
 
     /**
@@ -44,7 +44,7 @@ public class PatientData {
      * @param addmissionDate
      */
     public PatientData(int patientId, String firstName, String lastName, String address,
-                       String phone, String diagnosis, LocalDateTime addmissionDate) {
+                       String phone, String diagnosis, LocalDateTime addmissionDate, ArrayList<MedicationData> medication) {
         this.patientId = new SimpleIntegerProperty(patientId);
         this.firstName = new SimpleStringProperty(firstName);
         this.lastName = new SimpleStringProperty(lastName);
@@ -52,6 +52,7 @@ public class PatientData {
         this.phone = new SimpleStringProperty(phone);
         this.diagnosis = new SimpleStringProperty(diagnosis);
         this.addmissionDate = new SimpleObjectProperty<>(addmissionDate);
+        this.medication = medication;
 
     }
 

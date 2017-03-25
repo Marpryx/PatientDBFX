@@ -41,8 +41,8 @@ public class PatientDAOImplement implements PatientDAO {
     public int insertPatient(PatientData patient) throws SQLException {
         int result = 0;
 
-        String createQuery = "INSERT INTO PATIENT (FIRSTNAME, LASTNAME, ADDRESS, PHONE,"
-                + " DIAGNOSIS, ADMISSIONDATE) VALUES (?,?,?,?,?,?)";
+        String createQuery = "INSERT INTO PATIENT (FIRSTNAME, LASTNAME, ADDRESS, PHONE, "
+                + "DIAGNOSIS, ADMISSIONDATE) VALUES (?,?,?,?,?,?)";
 
         // Using Java 1.7 try with resources
         // This ensures that the objects in the parenthesis () will be closed
@@ -196,8 +196,8 @@ public class PatientDAOImplement implements PatientDAO {
 
         PatientData patient = null;
 
-        String selectQuery = "SELECT PATIENTID, FIRSTNAME, LASTNAME, ADDRESS, PHONE,"
-                + " DIAGNOSIS, ADMISSIONDATE "
+        String selectQuery = "SELECT PATIENTID, FIRSTNAME, LASTNAME, ADDRESS, PHONE, "
+                + "DIAGNOSIS, ADMISSIONDATE "
                 + "FROM PATIENT "
                 + "WHERE PATIENTID = ?";
 
@@ -233,8 +233,8 @@ public class PatientDAOImplement implements PatientDAO {
     @Override
     public PatientData findById(int key, PatientData patient) throws SQLException {
 
-        String selectQuery = "SELECT PATIENTID, FIRSTNAME, LASTNAME,"
-                + " ADDRESS, PHONE, DIAGNOSIS, ADMISSIONDATE"
+        String selectQuery = "SELECT PATIENTID, FIRSTNAME, LASTNAME, "
+                + "ADDRESS, PHONE, DIAGNOSIS, ADMISSIONDATE "
                 + "FROM PATIENT "
                 + "WHERE PATIENTID = ?";
 
@@ -270,7 +270,7 @@ public class PatientDAOImplement implements PatientDAO {
         PatientData patient = null;
 //FIRSTNAME, LASTNAME, ADDRESS, PHONE, DIAGNOSIS, ADMISSIONDATE
         String selectQuery = "SELECT PATIENTID, FIRSTNAME, "
-                + "LASTNAME, ADDRESS, PHONE, DIAGNOSIS, ADMISSIONDATE"
+                + "LASTNAME, ADDRESS, PHONE, DIAGNOSIS, ADMISSIONDATE "
                 + "FROM PATIENT "
                 + "WHERE LASTNAME = ?";
 
@@ -306,8 +306,8 @@ public class PatientDAOImplement implements PatientDAO {
         ObservableList<PatientData> allPatientData = FXCollections.observableArrayList();
         PatientData patient = new PatientData();
 
-        String selectQuery = "SELECT PATIENTID, FIRSTNAME, LASTNAME, ADDRESS,"
-                + " PHONE, DIAGNOSIS, ADMISSIONDATE "
+        String selectQuery = "SELECT PATIENTID, FIRSTNAME, LASTNAME, ADDRESS, "
+                + "PHONE, DIAGNOSIS, ADMISSIONDATE "
                 + "FROM PATIENT";
 
         try (Connection connection = ConnectionHelper.getConnection();
@@ -342,8 +342,8 @@ public class PatientDAOImplement implements PatientDAO {
     public ArrayList<PatientData> findAll() throws SQLException {
         ArrayList<PatientData> allParentRows = new ArrayList<>();
 
-        String selectQuery = "SELECT PATIENTID, FIRSTNAME, LASTNAME, ADDRESS,"
-                + " PHONE, DIAGNOSIS, ADMISSIONDATE "
+        String selectQuery = "SELECT PATIENTID, FIRSTNAME, LASTNAME, ADDRESS, "
+                + "PHONE, DIAGNOSIS, ADMISSIONDATE "
                 + "FROM PATIENT";
 
         // first try-with-resources to close connections
@@ -369,8 +369,8 @@ public class PatientDAOImplement implements PatientDAO {
     public int insertMedicat(MedicationData medication) throws SQLException {
         int result = 0;
 
-        String createQuery = "INSERT INTO MEDICATION (PATIENTID, MEDICAT, DOSAGE,"
-                + " FORM, DATEOFMED) VALUES (?,?,?,?,?)";
+        String createQuery = "INSERT INTO MEDICATION (PATIENTID, MEDICAT, DOSAGE, "
+                + "FORM, DATEOFMED) VALUES (?,?,?,?,?)";
         // first try-with-resources to close connections
         try (Connection connection = ConnectionHelper.getConnection();
                 PreparedStatement statement = connection.prepareStatement(createQuery, Statement.RETURN_GENERATED_KEYS);) {
@@ -403,7 +403,7 @@ public class PatientDAOImplement implements PatientDAO {
     private MedicationData createMedication(ResultSet resultSet) throws SQLException {
 
         MedicationData medication = new MedicationData();
-        medication.setId(resultSet.getInt("ID"));
+        medication.setId(resultSet.getInt("MEDICATIONID"));
         medication.setPatientId(resultSet.getInt("PATIENTID"));
         medication.setMedicat(resultSet.getString("MEDICAT"));
         medication.setDosage(resultSet.getString("DOSAGE"));
@@ -424,7 +424,7 @@ public class PatientDAOImplement implements PatientDAO {
      */
     private MedicationData createMedication(ResultSet resultSet, MedicationData medication) throws SQLException {
 
-        medication.setId(resultSet.getInt("ID"));
+        medication.setId(resultSet.getInt("MEDICATIONID"));
         medication.setPatientId(resultSet.getInt("PATIENTID"));
         medication.setMedicat(resultSet.getString("MEDICAT"));
         medication.setDosage(resultSet.getString("DOSAGE"));
@@ -504,7 +504,7 @@ public class PatientDAOImplement implements PatientDAO {
     public int deleteMedicat(MedicationData medication) throws SQLException {
         int result = 0;
 
-        String query = "DELETE FROM MEDICATION WHERE ID = ?";
+        String query = "DELETE FROM MEDICATION WHERE MEDICATIONID = ?";
 
         // Connection is only open for the operation and then immediately closed
         try (Connection connection = ConnectionHelper.getConnection();
@@ -517,7 +517,7 @@ public class PatientDAOImplement implements PatientDAO {
     }
 
     /**
-     * ============= Retrieving Medication (Detail) record by ID.
+     * Retrieving Medication (Detail) record by ID.
      *
      * @param id
      * @return MedicationData medication
@@ -528,10 +528,9 @@ public class PatientDAOImplement implements PatientDAO {
 
         MedicationData medication = null;
 
-        String selectQuery = "SELECT ID, PATIENTID, DATEOFMED, MED, "
-                + "UNITCOST, UNITS "
+        String selectQuery = "SELECT MEDICATIONID, PATIENTID, MEDICAT, DOSAGE, FORM, DATEOFMED "
                 + "FROM MEDICATION "
-                + "WHERE ID = ?";
+                + "WHERE MEDICATIONID = ?";
 
         // first try-with-resources to close connections
         try (Connection connection = ConnectionHelper.getConnection();
@@ -561,9 +560,9 @@ public class PatientDAOImplement implements PatientDAO {
 
         MedicationData medication = null;
 
-        String selectQuery = "SELECT ID, PATIENTID, MEDICAT, DOSAGE, FORM, DATEOFMED "
+        String selectQuery = "SELECT MEDICATIONID, PATIENTID, MEDICAT, DOSAGE, FORM, DATEOFMED "
                 + "FROM MEDICATION "
-                + "WHERE ID = ? "
+                + "WHERE MEDICATIONID = ? "
                 + "AND PATIENTID = ?";
 
         // first try-with-resources to close connections
@@ -578,7 +577,7 @@ public class PatientDAOImplement implements PatientDAO {
                 }
             }
         }
-        log.info("Found Medication record with ID " + id + "? : " + (medication != null));
+        log.info("Found Medication record with MEDICATIONID " + id + "? : " + (medication != null));
         return medication;
     }
 
@@ -596,7 +595,7 @@ public class PatientDAOImplement implements PatientDAO {
         // clearing all objects from medication obj as we are creating new medication data set
         medication.clear();
 
-        String selectQuery = "SELECT ID, PATIENTID, MEDICAT, DOSAGE, FORM, DATEOFMED"
+        String selectQuery = "SELECT MEDICATIONID, PATIENTID, MEDICAT, DOSAGE, FORM, DATEOFMED "
                 + "FROM MEDICATION WHERE PATIENTID = ?";
 
         // first try-with-resources to close connections
@@ -616,9 +615,9 @@ public class PatientDAOImplement implements PatientDAO {
 
     @Override
     public MedicationData findMedicationById(int id, int patientId, MedicationData medication) throws SQLException {
-        String query = "SELECT ID, PATIENTID, MEDICAT, DOSAGE, FORM, DATEOFMED "
+        String query = "SELECT MEDICATIONID, PATIENTID, MEDICAT, DOSAGE, FORM, DATEOFMED "
                 + "FROM MEDICATION "
-                + "WHERE ID = ? "
+                + "WHERE MEDICATIONID = ? "
                 + "AND PATIENTID = ?";
 
         // first try-with-resources to close connections
