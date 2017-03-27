@@ -161,7 +161,7 @@ public class PatientData {
         this.address.set(address);
     }
 
-    public StringProperty address() {
+    public StringProperty addressProperty() {
         return address;
     }
     
@@ -173,7 +173,7 @@ public class PatientData {
         this.phone.set(phone);
     }
 
-    public StringProperty phone() {
+    public StringProperty phoneProperty() {
         return phone;
     }
 

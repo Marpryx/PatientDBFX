@@ -1,5 +1,8 @@
 package com.maryna.patientdb;
 
+import com.maryna.patientdb.beans.PatientData;
+import com.maryna.patientdb.persistence.PatientDAO;
+import com.maryna.patientdb.persistence.PatientDAOImplement;
 import static javafx.application.Application.launch;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -10,10 +13,11 @@ import javafx.stage.Stage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 /**
- * Basic class for starting a JavaFX application
+ * Starts a JavaFX application
  *
  *
  */
@@ -24,12 +28,19 @@ public class MainAppFX extends Application {
 
     // The primary window/frame of the application
     private Stage primaryStage;
+    
+    //PatientDAO interface reference field
+    private final PatientDAO patientDAO;
 
+    //Patient object that will be passed to medication controller
+    private PatientData patient;
+    
     /**
      * Constructor
      */
     public MainAppFX() {
         super();
+        patientDAO = new PatientDAOImplement();
     }
 
     /**
@@ -49,30 +60,21 @@ public class MainAppFX extends Application {
         configureStage();
 
         // Set the window title
-        primaryStage.setTitle(ResourceBundle.getBundle("MessagesBundle").getString("title"));
+        primaryStage.setTitle("Hospital database administration tool");
         // Raise the curtain on the Stage
-        primaryStage.show();
+        this.primaryStage.show();
     }
 
     /**
-     * Load the FXML and bundle, create a Scene and put the Scene on Stage.
-     *
-     * This approach allows to use loader.getController() to get a
-     * reference to the fxml's controller should you need to pass data to it.
-     * Not used in this archetype.
+     * Loads Patient FXML layout
      */
-    private void configureStage() {
+    public void loadPatientParentWindow() {
+
         try {
             // Instantiate the FXMLLoader
             FXMLLoader loader = new FXMLLoader();
-
             // Set the location of the fxml file in the FXMLLoader
-            loader.setLocation(MainAppFX.class.getResource("/fxml/Scene.fxml"));
-
-            // Localize the loader with its bundle
-            // Uses the default locale and if a matching bundle is not found
-            // will then use MessagesBundle.properties
-            loader.setResources(ResourceBundle.getBundle("MessagesBundle"));
+            loader.setLocation(MainAppFX.class.getResource("/fxml/Patient.fxml"));
 
             // Parent is the base class for all nodes that have children in the
             // scene graph such as AnchorPane and most other containers
@@ -84,11 +86,20 @@ public class MainAppFX extends Application {
             // Put the Scene on Stage
             primaryStage.setScene(scene);
 
-        } catch (IOException ex) { // getting resources or files could fail
+            // Give the PatientFXMLController controller access to the main app.
+            PatientFXMLController controller = loader.getController();
+            controller.setMainAppFX(this);
+            // Pass PatientDAO instance to the Patient controller
+            controller.setPatientDAO(patientDAO);
+            // Load data onto Patient table
+            controller.displayPatientTable();
+
+        } catch (IOException | SQLException ex) { // getting resources or files could fail
             log.error(null, ex);
             System.exit(1);
         }
     }
+
 
     /**
      * Main method to start the app

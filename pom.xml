@@ -14,7 +14,7 @@
     <!-- The version of the build. Any value is valid though a number and a
     string are common. SNAPSHOT means a project under development. FINAL is commonly
     used to refer to stable production version -->
-    <version>1.0</version>
+    <version>1.0-SNAPSHOT</version>
 
     <!-- Default value is jar but may be war or ear -->
     <packaging>jar</packaging>
@@ -22,9 +22,6 @@
     <!-- The name given to the project. Unlike groupId and artifactId a name
     may have spaces -->
     <name>PatientDB</name>
-
-    <!-- A description of the program -->
-    <description>Standard starting point for JavaFX programs for students of Ken Fogel</description>
 
     <!-- Identifies the programmer or programmers who worked on the project -->
     <developers>
@@ -50,6 +47,26 @@
 
     <dependencies>
 
+        <!-- The dependency for the org.jfxtras - DateTimePicker -->
+        <dependency>
+            <groupId>org.jfxtras</groupId>
+            <artifactId>jfxtras-controls</artifactId>
+            <version>8.0-r4</version>
+            <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>org.jfxtras</groupId>
+            <artifactId>jfxtras-fxml</artifactId>
+            <version>8.0-r4</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.jfxtras</groupId>
+            <artifactId>jfxtras-common</artifactId>
+            <version>8.0-r4</version>
+            <scope>compile</scope>
+        </dependency>
+        
         <!-- The dependency for the SLF4J Facade -->
         <dependency>
             <groupId>org.slf4j</groupId>
@@ -97,6 +114,8 @@
         <!-- Goals may be set in the IDE or the pom IDE or CLI goals override the
         defaultGoal -->
         <defaultGoal>clean compile package exec:java</defaultGoal>
+        
+        <finalName>${project.artifactId}</finalName>
 
         <!-- Plugins define components that perform actions -->
         <plugins>
